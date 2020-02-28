@@ -5,6 +5,11 @@ import {timeDate} from './displayTime.js'
 const date = new Date()
 const hour = date.getHours()
 let image, greetings
+let currentUsers=['Rahman','David','Emanuel','Atik']
+const currentUser = ()=>  {
+  return currentUsers[Math.floor(Math.random()*4)] 
+}
+
 switch(true) {
     case(hour<5):
         greetings= 'Good Night!'
@@ -28,17 +33,31 @@ switch(true) {
 }
 
 class BackgroundChange extends Component {
-  state = {
-    backGround: {
-      currentUser: 'Mostafizur Rahman',
+  state = {      
+      user:currentUser(),
       greetings:greetings,
       image:image,
-      time:timeDate()
-    }
+      time:timeDate()  
 }
 
+
+// setInterval(function(){
+//   myFunc(1);
+// }, 500);
+
+// setInterval(function(){
+//   myFunc(2);
+// }, 1000);
+
+// setInterval(function(){
+//   myFunc(3);
+// }, 2000);
 componentDidMount() {
-    this.interval = setInterval(() => this.setTime(), 1000);
+   this.interval = setInterval(() => this.setUser(), 5000)
+   this.intervala = setInterval(() => this.setTime(), 1000);
+  }
+  setUser= ()=>{
+    this.setState({user:currentUser() });
   }
   setTime = () => {
     this.setState({time:timeDate() });
@@ -49,9 +68,9 @@ componentDidMount() {
 render() {
   return(
     <div className = 'img-wrapper' 
-    style={{ backgroundImage:`url(${this.state.backGround.image})`}} >
-        <h2> {this.state.backGround.greetings}</h2>
-        <h2> {timeDate()}</h2>     
+    style={{ backgroundImage:`url(${this.state.image})`}} >
+        <h2> {this.state.greetings}{this.state.user}</h2>
+        <h2> {this.state.time}</h2>     
     </div>
     )
   }
