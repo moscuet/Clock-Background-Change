@@ -1,4 +1,10 @@
+  
+  # Clock-Background-Change
 
+
+###  Clock displays current locat time
+### change back ground according to the time of the day
+### Greeting with random name
 # [Demo](https://relaxed-lumiere-c8c62f.netlify.com/)
 
 
